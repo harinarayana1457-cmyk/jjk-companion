@@ -1,6 +1,4 @@
-Here is a highly professional, visually clean, and striking `README.md` file tailored specifically for your repository. It highlights your technical stack, outlines the app's core features, and features an engaging, first-person "Developer's Log" sharing your experience with the Antigravity SDK.
 
----
 
 # 🌌 Jujutsu Kaisen Companion App
 

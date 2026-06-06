@@ -1,0 +1,274 @@
+/* Jujutsu Sorcery Web Interface Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-dark: #07070a;
+  --secondary-dark: #0f1016;
+  --panel-dark: #141620;
+  --cursed-blue: #00d2ff;
+  --sukuna-crimson: #ff1744;
+  --shadow-obsidian: #3d5afe;
+  --gold-accent: #ffd600;
+  --grass-green: #00e676;
+}
+
+body {
+  background-color: var(--primary-dark);
+  color: #e2e8f0;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom Typography */
+.jjk-title {
+  font-family: 'Cinzel Decorative', serif;
+  letter-spacing: 0.1em;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--secondary-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: #252836;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cursed-blue);
+}
+
+/* Card Styles & Glassmorphism */
+.glass-card {
+  background: rgba(15, 16, 22, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card:hover {
+  border-color: rgba(0, 210, 255, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(0, 210, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Cursed Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+}
+.glow-blue:hover {
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.35);
+  border-color: rgba(0, 210, 255, 0.6);
+}
+
+.glow-red {
+  box-shadow: 0 0 15px rgba(255, 23, 68, 0.15);
+  border: 1px solid rgba(255, 23, 68, 0.3);
+}
+.glow-red:hover {
+  box-shadow: 0 0 25px rgba(255, 23, 68, 0.35);
+  border-color: rgba(255, 23, 68, 0.6);
+}
+
+/* Navigation items */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--cursed-blue);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: var(--cursed-blue);
+  text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+}
+
+/* Background Grids */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Floating Cursed Energy Particles */
+#cursed-particles-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Animation Keyframes */
+@keyframes screen-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  10% { transform: translate(-4px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 3px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-2px, 2px) rotate(-1deg); }
+  60% { transform: translate(3px, 1px) rotate(0deg); }
+  70% { transform: translate(-3px, -2px) rotate(1deg); }
+  85% { transform: translate(2px, 3px) rotate(-1deg); }
+  90% { transform: translate(-1px, 2px) rotate(0deg); }
+}
+.shake-viewport {
+  animation: screen-shake 0.5s ease-in-out infinite;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+}
+.animate-float {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes pulse-intense {
+  0%, 100% { transform: scale(1); opacity: 0.8; filter: brightness(1); }
+  50% { transform: scale(1.03); opacity: 1; filter: brightness(1.2); }
+}
+.animate-pulse-intense {
+  animation: pulse-intense 2s infinite ease-in-out;
+}
+
+@keyframes energy-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: energy-spin 25s linear infinite;
+}
+
+/* Domain Overlay Canvas & Screen Setup */
+#domain-arena-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+#domain-arena-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#domain-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 101;
+}
+
+.domain-content {
+  position: relative;
+  z-index: 102;
+  text-align: center;
+  color: #fff;
+  user-select: none;
+  max-width: 800px;
+  padding: 20px;
+}
+
+/* Handsign Cut-in animation */
+@keyframes hand-slide-in {
+  0% { transform: translate(-50%, -60%) scale(0.7); opacity: 0; }
+  15% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+  85% { transform: translate(-50%, -50%) scale(1); opacity: 1; filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.6)); }
+  100% { transform: translate(-50%, -40%) scale(1.2); opacity: 0; }
+}
+.handsign-flash {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 200;
+  pointer-events: none;
+  animation: hand-slide-in 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Domain Text Animations */
+@keyframes text-reveal {
+  0% { letter-spacing: -0.2em; opacity: 0; filter: blur(10px); }
+  50% { opacity: 0.5; }
+  100% { letter-spacing: 0.15em; opacity: 1; filter: blur(0px); }
+}
+.animate-text-reveal {
+  animation: text-reveal 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Student ID Card Printing design */
+.student-card {
+  background: linear-gradient(135deg, rgba(16, 18, 27, 0.95) 0%, rgba(31, 35, 53, 0.95) 100%);
+  border: 2px solid var(--cursed-blue);
+  box-shadow: 0 15px 35px rgba(0, 210, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.student-card::before {
+  content: 'TOKYO JUJUTSU HIGH';
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  font-size: 2.5rem;
+  font-weight: 900;
+  opacity: 0.03;
+  transform: rotate(15deg);
+  font-family: 'Cinzel Decorative', serif;
+}
+
+/* Glass Buttons */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--cursed-blue);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+/* Stat bar fill-ups */
+.stat-bar-fill {
+  transition: width 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Spinning magic runes/Japanese scripts */
+.scrolling-kanji {
+  writing-mode: vertical-rl;
+  font-size: 1.5rem;
+  letter-spacing: 0.5em;
+  opacity: 0.15;
+  color: var(--cursed-blue);
+  font-weight: bold;
+}

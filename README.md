@@ -1,7 +1,7 @@
 <div align="center">
 
-# 🌌 JUJUTSU KAISEN COMPANION
-### Interactive Character Archive, Cursed Technique Analyzer & Tactical Battle Engine
+# ⚡ jjk-companion — Turn-Based State Machine Battle Engine
+### Interactive Tactical RPG & Lore Compendium Built with Vanilla JavaScript ES6+, Finite State Machines & Antigravity SDK
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![HTML5](https://img.shields.io/badge/HTML5-Modern%20Semantic-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
